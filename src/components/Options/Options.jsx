@@ -1,25 +1,19 @@
 import { useState } from "react";
 import styles from "./Options.module.css";
 
-const Options = () => {
-  const [options, setOptions] = useState(0);
-
-  const handleClickBtn = () => {
-    setOptions(options + 1);
-    console.log(setOptions, "hello");
-  };
-
+const Options = ({ updateFeedback, resetFeedback, totalFeedback }) => {
   return (
     <div>
-      <button type="button" onClick={handleClickBtn}>
-        Good {options}
+      <button type="button" onClick={() => updateFeedback("good")}>
+        Good
       </button>
-      <button type="button" onClick={() => console.log("hello neutral")}>
+      <button type="button" onClick={() => updateFeedback("neutral")}>
         Neutral
       </button>
-      <button type="button" onClick={() => console.log("hello bad")}>
+      <button type="button" onClick={() => updateFeedback("bad")}>
         Bad
       </button>
+      {totalFeedback > 0 && <button onClick={resetFeedback}>Reset</button>}
     </div>
   );
 };
